@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WebChat AI — Chat with AI in your browser</title>
+<meta name="description" content="WebChat AI: a fast, free, no-signup AI chat website. Chat with free open models, streaming, markdown + code, history, and offline demo mode." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>" />
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="logo">💬</div>
+      <div>
+        <div class="brand-name">WebChat AI</div>
+        <div class="brand-sub" id="statusLine"><span class="dot online"></span> ready</div>
+      </div>
+      <button id="collapseBtn" class="icon-btn" title="Toggle sidebar">☰</button>
+    </div>
+    <button id="newChatBtn" class="new-chat">＋ New chat</button>
+    <div class="search-wrap"><input id="searchInput" type="search" placeholder="Search chats…" /></div>
+    <div id="chatList" class="chat-list"></div>
+    <div class="side-footer">
+      <button id="exportBtn" class="ghost-btn">⬇ Export</button>
+      <button id="clearBtn" class="ghost-btn danger">🗑 Clear</button>
+      <button id="settingsBtn" class="ghost-btn">⚙ Settings</button>
+    </div>
+  </aside>
+
+  <main id="main">
+    <header id="topbar">
+      <div class="model-wrap">
+        <label for="modelSelect">Model</label>
+        <select id="modelSelect"><option>loading…</option></select>
+        <button id="refreshModels" class="icon-btn" title="Refresh model list">↻</button>
+      </div>
+      <div class="top-actions">
+        <label class="stream-toggle"><input type="checkbox" id="streamToggle" checked /> Stream</label>
+        <button id="themeBtn" class="icon-btn" title="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <div id="messages" class="messages"></div>
+
+    <div id="suggestions" class="suggestions">
+      <button data-prompt="Explain quantum computing in simple terms">⚛️ Explain quantum computing</button>
+      <button data-prompt="Write a Python function to sort a list of dicts by a key">🐍 Python sorting helper</button>
+      <button data-prompt="Give me 5 startup ideas using AI in 2026">🚀 5 AI startup ideas</button>
+      <button data-prompt="Write a friendly professional email asking for a deadline extension">✉️ Write an email</button>
+    </div>
+
+    <form id="composer" class="composer">
+      <textarea id="input" rows="1" placeholder="Message WebChat AI…  (Enter = send, Shift+Enter = new line)"></textarea>
+      <button id="stopBtn" type="button" class="send stop" hidden>⏹</button>
+      <button id="sendBtn" type="submit" class="send">➤</button>
+    </form>
+    <div class="hint">No signup · History stays in your browser · Add your own API key in ⚙ Settings for live AI · <span id="modeHint">demo mode</span></div>
+  </main>
+</div>
+
+<div id="settingsModal" class="modal" hidden>
+  <div class="modal-card">
+    <h2>Settings</h2>
+    <label>API endpoint (OpenAI-compatible)
+      <input id="endpointInput" type="url" spellcheck="false" />
+    </label>
+    <label>API key <small>(optional — Zen free models work without one)</small>
+      <input id="keyInput" type="password" placeholder="leave empty for free public access" autocomplete="off" />
+    </label>
+    <label>System prompt
+      <textarea id="systemInput" rows="3"></textarea>
+    </label>
+    <div class="modal-row">
+      <button id="saveSettings" class="new-chat">Save</button>
+      <button id="closeSettings" class="ghost-btn">Close</button>
+      <button id="demoModeBtn" class="ghost-btn">Toggle offline demo</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
